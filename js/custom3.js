@@ -1,471 +1,589 @@
-$(document).ready(function () {
 
 
-    gsap.registerPlugin(ScrollTrigger);
 
-    var $animeCard = document.querySelector(".sc2-card-inner");
-    //loader img
-    gsap.set($animeCard, {
-        rotationY: 90,
-        top: "50%",
+gsap.registerPlugin(ScrollTrigger);
+
+var $animeCard = document.querySelector(".sc2-card-inner");
+//loader img
+gsap.set($animeCard, {
+    rotationY: 90,
+    top: "50%",
+    left: "50%",
+    xPercent: -50,
+    yPercent: -50,
+    width: "40vh",
+    height: "40vh",
+    scale: 1
+});
+
+//img set
+gsap.set(".sc2-card-front img", {
+    attr: { src: "./images/01hero.jpg" }
+});
+gsap.set(".sc2-card-back img", {
+    attr: { src: "./images/03hero.jpg" }
+});
+
+//Main card-wrapper
+gsap.set(".sc2-card", { x: "50%", y: "50%" });
+
+// Main-text animation
+//Main text load
+
+const mainTxt = gsap.timeline();
+
+//Main text opacity down
+const mainTxt2 = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".main-txt",
+        start: "center center",
+        end: "+=50",
+        markers: false,
+        scrub: 1
+    }
+});
+mainTxt2.to(".main-txt", { opacity: 0, ease: "linear" });
+
+//loader to scale
+const tl = gsap.timeline();
+tl.to($animeCard, {
+    rotationY: 360,
+    ease: Expo.easeIn,
+    duration: 1,
+    scale: 1,
+    width: "100vw",
+    height: "100vh"
+});
+
+//Banner one image scale down
+const t2 = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".banner",
+        start: "center center",
+        end: "+=600",
+        markers: false,
+        scrub: 1
+    }
+});
+if (window.innerWidth >= 1200 && window.innerWidth <= 1499) {
+    t2.to($animeCard, {
+        height: "60vh",
+        width: "472.5px",
+        left: "calc(243.75px + (50% - 585px) + 682.5px)"
+    });
+} else if (window.innerWidth >= 992 && window.innerWidth <= 1199) {
+    t2.to($animeCard, {
+        height: "60vh",
+        width: "465px",
+        left: "calc(240px + (50% - 480px) + 480px)"
+    });
+} else if (window.innerWidth >= 768 && window.innerWidth <= 991) {
+    t2.to($animeCard, {
+        height: "60vh",
+        width: "345px",
+        left: "calc(180px + (50% - 360px) + 360px)"
+    });
+} else if (window.innerWidth <= 767) {
+    t2.to($animeCard, {
+        height: "calc(100vh - 340px)",
+        width: "95%",
         left: "50%",
-        xPercent: -50,
-        yPercent: -50,
-        width: "40vh",
-        height: "40vh",
-        scale: 1
+        top: "calc(100% - 40px)",
+        yPercent: -100
     });
-
-    //img set
-    gsap.set(".sc2-card-front img", {
-        attr: { src: "./images/01hero.jpg" }
+} else {
+    t2.to($animeCard, {
+        height: "60vh",
+        width: "535px",
+        left: "calc(275px + (50% - 660px) + 770px)"
     });
-    gsap.set(".sc2-card-back img", {
-        attr: { src: "./images/03hero.jpg" }
-    });
+}
 
-    //Main card-wrapper
-    gsap.set(".sc2-card", { x: "50%", y: "50%" });
+gsap.to(".main-wallpaper", {
+    opacity: 0,
+    scrollTrigger: {
+        trigger: ".banner",
+        start: "center+=" + 100 + " center",
+        end: "bottom center",
+        markers: false,
+        scrub: 1
+    }
+});
 
-    // Main-text animation
-    //Main text load
-    gsap.set(".main-txt", { opacity: 0, yPercent: 50 });
-    const mainTxt = gsap.timeline();
-    mainTxt.to(".main-txt", { opacity: 1, yPercent: -50, duration: 2 });
+//Banner text-animation
+gsap.set(".banner-content", { opacity: 0, yPercent: 50 });
+gsap.to(".banner-content", {
+    ease: "linear",
+    yPercent: 0,
+    opacity: 1,
+    scrollTrigger: {
+        trigger: ".banner",
+        start: "center+=" + 500 + " center",
+        end: "+=0",
+        markers: false,
+        scrub: 1
+    }
+});
 
-    //Main text opacity down
-    const mainTxt2 = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".main-txt",
-            start: "center center",
-            end: "+=50",
-            markers: false,
-            scrub: 1
-        }
-    });
-    mainTxt2.to(".main-txt", { opacity: 0, ease: "linear" });
+//Banner animation
+gsap.to(".banner", {
+    ease: "linear",
+    scrollTrigger: {
+        trigger: ".banner",
+        start: "center center",
+        end: "+=600",
+        markers: false,
+        pin: true,
+        pinSpacing: true,
+        scrub: 1
+    }
+});
 
-    //loader to scale
-    const tl = gsap.timeline();
-    tl.to($animeCard, {
-        rotationY: 0,
-        ease: Expo.easeIn,
-        duration: 2.5,
-        scale: 1,
+//Banner two animation
+gsap.to(".banner-two", {
+    ease: "linear",
+    scrollTrigger: {
+        trigger: ".banner-two",
+        start: "center center",
+        end: "+=600",
+        markers: false,
+        pin: true,
+        pinSpacing: true,
+        scrub: 1
+    }
+});
+
+//Banner two image rotation
+const t3 = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".banner-two",
+        start: "top center",
+        end: "+=600",
+        markers: false,
+        scrub: 1
+    }
+});
+if (window.innerWidth <= 767) {
+    t3.to($animeCard, {
+        rotationY: -180,
+        height: "100vh",
         width: "100vw",
-        height: "100vh"
+        left: "50%",
+        top: "50%",
+        yPercent: -50
     });
+} else {
+    t3.to($animeCard, {
+        rotationY: -180,
+        height: "100vh",
+        width: "100vw",
+        left: "50%"
+    });
+}
 
-    //Banner one image scale down
-    const t2 = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".banner",
-            start: "center center",
-            end: "+=600",
-            markers: false,
-            scrub: 1
-        }
-    });
-    if (window.innerWidth >= 1200 && window.innerWidth <= 1499) {
-        t2.to($animeCard, {
-            height: "60vh",
-            width: "472.5px",
-            left: "calc(243.75px + (50% - 585px) + 682.5px)"
-        });
-    } else if (window.innerWidth >= 992 && window.innerWidth <= 1199) {
-        t2.to($animeCard, {
-            height: "60vh",
-            width: "465px",
-            left: "calc(240px + (50% - 480px) + 480px)"
-        });
-    } else if (window.innerWidth >= 768 && window.innerWidth <= 991) {
-        t2.to($animeCard, {
-            height: "60vh",
-            width: "345px",
-            left: "calc(180px + (50% - 360px) + 360px)"
-        });
-    } else if (window.innerWidth <= 767) {
-        t2.to($animeCard, {
-            height: "calc(100vh - 340px)",
-            width: "95%",
-            left: "50%",
-            top: "calc(100% - 40px)",
-            yPercent: -100
-        });
-    } else {
-        t2.to($animeCard, {
-            height: "60vh",
-            width: "535px",
-            left: "calc(275px + (50% - 660px) + 770px)"
-        });
+//Banner three animation
+gsap.to(".banner-three", {
+    ease: "linear",
+    scrollTrigger: {
+        trigger: ".banner-three",
+        start: "center center",
+        end: "+=600",
+        markers: false,
+        pin: true,
+        pinSpacing: true,
+        scrub: 1
     }
+});
 
-    gsap.to(".main-wallpaper", {
-        opacity: 0,
-        scrollTrigger: {
-            trigger: ".banner",
-            start: "center+=" + 100 + " center",
-            end: "bottom center",
-            markers: false,
-            scrub: 1
-        }
-    });
-
-    //Banner text-animation
-    gsap.set(".banner-content", { opacity: 0, yPercent: 50 });
-    gsap.to(".banner-content", {
-        ease: "linear",
-        yPercent: 0,
-        opacity: 1,
-        scrollTrigger: {
-            trigger: ".banner",
-            start: "center+=" + 500 + " center",
-            end: "+=0",
-            markers: false,
-            scrub: 1
-        }
-    });
-
-    //Banner animation
-    gsap.to(".banner", {
-        ease: "linear",
-        scrollTrigger: {
-            trigger: ".banner",
-            start: "center center",
-            end: "+=600",
-            markers: false,
-            pin: true,
-            pinSpacing: true,
-            scrub: 1
-        }
-    });
-
-    //Banner two animation
-    gsap.to(".banner-two", {
-        ease: "linear",
-        scrollTrigger: {
-            trigger: ".banner-two",
-            start: "center center",
-            end: "+=600",
-            markers: false,
-            pin: true,
-            pinSpacing: true,
-            scrub: 1
-        }
-    });
-
-    //Banner two image rotation
-    const t3 = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".banner-two",
-            start: "top center",
-            end: "+=600",
-            markers: false,
-            scrub: 1
-        }
-    });
-    if (window.innerWidth <= 767) {
-        t3.to($animeCard, {
-            rotationY: -180,
-            height: "100vh",
-            width: "100vw",
-            left: "50%",
-            top: "50%",
-            yPercent: -50
-        });
-    } else {
-        t3.to($animeCard, {
-            rotationY: -180,
-            height: "100vh",
-            width: "100vw",
-            left: "50%"
-        });
+//Banner three image rotation
+const t4 = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".banner-three",
+        start: "top center",
+        end: "+=600",
+        markers: false,
+        scrub: 1
     }
-
-    //Banner three animation
-    gsap.to(".banner-three", {
-        ease: "linear",
-        scrollTrigger: {
-            trigger: ".banner-three",
-            start: "center center",
-            end: "+=600",
-            markers: false,
-            pin: true,
-            pinSpacing: true,
-            scrub: 1
-        }
+});
+if (window.innerWidth >= 1200 && window.innerWidth <= 1499) {
+    t4.to($animeCard, {
+        rotationY: -360,
+        height: "60vh",
+        width: "472.5px",
+        left: "calc((50% - 585px) + 243.75px)"
     });
-
-    //Banner three image rotation
-    const t4 = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".banner-three",
-            start: "top center",
-            end: "+=600",
-            markers: false,
-            scrub: 1
-        }
+} else if (window.innerWidth >= 992 && window.innerWidth <= 1199) {
+    t4.to($animeCard, {
+        rotationY: -360,
+        height: "60vh",
+        width: "465px",
+        left: "calc((50% - 465px) + 240px)"
     });
-    if (window.innerWidth >= 1200 && window.innerWidth <= 1499) {
-        t4.to($animeCard, {
-            rotationY: -360,
-            height: "60vh",
-            width: "472.5px",
-            left: "calc((50% - 585px) + 243.75px)"
-        });
-    } else if (window.innerWidth >= 992 && window.innerWidth <= 1199) {
-        t4.to($animeCard, {
-            rotationY: -360,
-            height: "60vh",
-            width: "465px",
-            left: "calc((50% - 465px) + 240px)"
-        });
-    } else if (window.innerWidth >= 768 && window.innerWidth <= 991) {
-        t4.to($animeCard, {
-            rotationY: -360,
-            height: "60vh",
-            width: "345px",
-            left: "calc((50% - 360px) + 180px)"
-        });
-    } else if (window.innerWidth <= 767) {
-        t4.to($animeCard, {
-            rotationY: -360,
-            height: "calc(100vh - 340px)",
-            width: "95%",
-            left: "50%",
-            top: "calc(100% - 40px)",
-            yPercent: -100
-        });
-    } else {
-        t4.to($animeCard, {
-            rotationY: -360,
-            height: "60vh",
-            width: "535px",
-            left: "calc((50% - 660px) + 275px)"
-        });
+} else if (window.innerWidth >= 768 && window.innerWidth <= 991) {
+    t4.to($animeCard, {
+        rotationY: -360,
+        height: "60vh",
+        width: "345px",
+        left: "calc((50% - 360px) + 180px)"
+    });
+} else if (window.innerWidth <= 767) {
+    t4.to($animeCard, {
+        rotationY: -360,
+        height: "calc(100vh - 340px)",
+        width: "95%",
+        left: "50%",
+        top: "calc(100% - 40px)",
+        yPercent: -100
+    });
+} else {
+    t4.to($animeCard, {
+        rotationY: -360,
+        height: "60vh",
+        width: "535px",
+        left: "calc((50% - 660px) + 275px)"
+    });
+}
+
+//Banner four animation
+gsap.to(".banner-four", {
+    ease: "linear",
+    scrollTrigger: {
+        trigger: ".banner-four",
+        start: "center center",
+        end: "+=600",
+        markers: false,
+        pin: true,
+        pinSpacing: true,
+        scrub: 1
     }
+});
 
-    //Banner four animation
-    gsap.to(".banner-four", {
-        ease: "linear",
-        scrollTrigger: {
-            trigger: ".banner-four",
-            start: "center center",
-            end: "+=600",
-            markers: false,
-            pin: true,
-            pinSpacing: true,
-            scrub: 1
-        }
-    });
-
-    //Banner four image rotation
-    const t5 = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".banner-four",
-            start: "top center",
-            end: "+=600",
-            markers: false,
-            scrub: 1
-        }
-    });
-    if (window.innerWidth <= 767) {
-        t5.to($animeCard, {
-            rotationY: -180,
-            height: "100vh",
-            width: "100vw",
-            left: "50%",
-            top: "50%",
-            yPercent: -50
-        });
-    } else {
-        t5.to($animeCard, {
-            rotationY: -180,
-            height: "100vh",
-            width: "100vw",
-            left: "50%"
-        });
+//Banner four image rotation
+const t5 = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".banner-four",
+        start: "top center",
+        end: "+=600",
+        markers: false,
+        scrub: 1
     }
+});
+if (window.innerWidth <= 767) {
+    t5.to($animeCard, {
+        rotationY: -180,
+        height: "100vh",
+        width: "100vw",
+        left: "50%",
+        top: "50%",
+        yPercent: -50
+    });
+} else {
+    t5.to($animeCard, {
+        rotationY: -180,
+        height: "100vh",
+        width: "100vw",
+        left: "50%"
+    });
+}
 
-    // Main wrapper card
-    gsap.to(".sc2-card", {
-        ease: "linear",
-        scrollTrigger: {
-            trigger: ".sc2-card",
-            start: "top top",
-            end: "top bottom",
-            endTrigger: ".slider-card ",
-            markers: false,
-            pin: true,
-            pinSpacing: false,
-            scrub: 1
-        }
-    });
+// Main wrapper card
+gsap.to(".sc2-card", {
+    ease: "linear",
+    scrollTrigger: {
+        trigger: ".sc2-card",
+        start: "top top",
+        end: "top bottom",
+        endTrigger: ".slider-card ",
+        markers: false,
+        pin: true,
+        pinSpacing: false,
+        scrub: 1
+    }
+});
 
-    //slider-left img animation
-    gsap.set(".slider-left img:first-child", { xPercent: 50 });
-    gsap.set(".slider-left img:not(:first-child)", { xPercent: 100 });
-    gsap.to(".slider-left .img-1", {
-        ease: "none",
-        xPercent: -95,
-        scale: 0.6,
-        scrollTrigger: {
-            trigger: ".slider-card",
-            start: "center+=" + 180 + " center",
-            end: "center+=" + 900 + " center",
-            markers: false,
-            scrub: 1
-        }
-    });
-    gsap.to(".slider-left .img-2", {
-        ease: "none",
-        xPercent: -70,
-        scale: 0.7,
-        scrollTrigger: {
-            trigger: ".slider-card",
-            start: "center+=" + 360 + " center",
-            end: "center+=" + 900 + " center",
-            markers: false,
-            scrub: 1
-        }
-    });
-    gsap.to(".slider-left .img-3", {
-        ease: "none",
-        xPercent: -40,
-        scale: 0.8,
-        scrollTrigger: {
-            trigger: ".slider-card",
-            start: "center+=" + 540 + " center",
-            end: "center+=" + 900 + " center",
-            markers: false,
-            scrub: 1
-        }
-    });
-    gsap.to(".slider-left .img-4", {
-        ease: "none",
-        xPercent: -10,
-        scale: 0.9,
-        scrollTrigger: {
-            trigger: ".slider-card",
-            start: "center+=" + 720 + " center",
-            end: "center+=" + 900 + " center",
-            markers: false,
-            scrub: 1
-        }
-    });
-    gsap.to(".slider-left .img-5", {
-        ease: "none",
-        xPercent: 20,
-        scale: 1,
-        scrollTrigger: {
-            trigger: ".slider-card",
-            start: "center+=" + 800 + " center",
-            end: "center+=" + 900 + " center",
-            markers: false,
-            scrub: 1
-        }
-    });
+//slider-left img animation
+gsap.set(".slider-left img:first-child", { xPercent: 50 });
+gsap.set(".slider-left img:not(:first-child)", { xPercent: 100 });
+gsap.to(".slider-left .img-1", {
+    ease: "none",
+    xPercent: -95,
+    scale: 0.6,
+    scrollTrigger: {
+        trigger: ".slider-card",
+        start: "center+=" + 180 + " center",
+        end: "center+=" + 900 + " center",
+        markers: false,
+        scrub: 1
+    }
+});
+gsap.to(".slider-left .img-2", {
+    ease: "none",
+    xPercent: -70,
+    scale: 0.7,
+    scrollTrigger: {
+        trigger: ".slider-card",
+        start: "center+=" + 360 + " center",
+        end: "center+=" + 900 + " center",
+        markers: false,
+        scrub: 1
+    }
+});
+gsap.to(".slider-left .img-3", {
+    ease: "none",
+    xPercent: -40,
+    scale: 0.8,
+    scrollTrigger: {
+        trigger: ".slider-card",
+        start: "center+=" + 540 + " center",
+        end: "center+=" + 900 + " center",
+        markers: false,
+        scrub: 1
+    }
+});
+gsap.to(".slider-left .img-4", {
+    ease: "none",
+    xPercent: -10,
+    scale: 0.9,
+    scrollTrigger: {
+        trigger: ".slider-card",
+        start: "center+=" + 720 + " center",
+        end: "center+=" + 900 + " center",
+        markers: false,
+        scrub: 1
+    }
+});
+gsap.to(".slider-left .img-5", {
+    ease: "none",
+    xPercent: 20,
+    scale: 1,
+    scrollTrigger: {
+        trigger: ".slider-card",
+        start: "center+=" + 800 + " center",
+        end: "center+=" + 900 + " center",
+        markers: false,
+        scrub: 1
+    }
+});
 
-    // slider right img animation
-    gsap.set(".slider-right img:first-child", { xPercent: -50 });
-    gsap.set(".slider-right img:not(:first-child)", { xPercent: -100 });
-    gsap.to(".slider-right .img-1", {
-        ease: "none",
-        xPercent: 95,
-        scale: 0.6,
-        scrollTrigger: {
-            trigger: ".slider-card ",
-            start: "center+=" + 180 + " center",
-            end: "center+=" + 900 + " center",
-            markers: false,
-            scrub: 1
-        }
-    });
-    gsap.to(".slider-right .img-2", {
-        ease: "none",
-        xPercent: 70,
-        scale: 0.7,
-        scrollTrigger: {
-            trigger: ".slider-card ",
-            start: "center+=" + 360 + " center",
-            end: "center+=" + 900 + " center",
-            markers: false,
-            scrub: 1
-        }
-    });
-    gsap.to(".slider-right .img-3", {
-        ease: "none",
-        xPercent: 40,
-        scale: 0.8,
-        scrollTrigger: {
-            trigger: ".slider-card ",
-            start: "center+=" + 540 + " center",
-            end: "center+=" + 900 + " center",
-            markers: false,
-            scrub: 1
-        }
-    });
-    gsap.to(".slider-right .img-4", {
-        ease: "none",
-        xPercent: 10,
-        scale: 0.9,
-        scrollTrigger: {
-            trigger: ".slider-card ",
-            start: "center+=" + 720 + " center",
-            end: "center+=" + 900 + " center",
-            markers: false,
-            scrub: 1
-        }
-    });
-    gsap.to(".slider-right .img-5", {
-        ease: "none",
-        xPercent: -20,
-        scale: 1,
-        scrollTrigger: {
-            trigger: ".slider-card ",
-            start: "center+=" + 800 + " center",
-            end: "center+=" + 900 + " center",
-            markers: false,
-            scrub: 1
-        }
-    });
+// slider right img animation
+gsap.set(".slider-right img:first-child", { xPercent: -50 });
+gsap.set(".slider-right img:not(:first-child)", { xPercent: -100 });
+gsap.to(".slider-right .img-1", {
+    ease: "none",
+    xPercent: 95,
+    scale: 0.6,
+    scrollTrigger: {
+        trigger: ".slider-card ",
+        start: "center+=" + 180 + " center",
+        end: "center+=" + 900 + " center",
+        markers: false,
+        scrub: 1
+    }
+});
+gsap.to(".slider-right .img-2", {
+    ease: "none",
+    xPercent: 70,
+    scale: 0.7,
+    scrollTrigger: {
+        trigger: ".slider-card ",
+        start: "center+=" + 360 + " center",
+        end: "center+=" + 900 + " center",
+        markers: false,
+        scrub: 1
+    }
+});
+gsap.to(".slider-right .img-3", {
+    ease: "none",
+    xPercent: 40,
+    scale: 0.8,
+    scrollTrigger: {
+        trigger: ".slider-card ",
+        start: "center+=" + 540 + " center",
+        end: "center+=" + 900 + " center",
+        markers: false,
+        scrub: 1
+    }
+});
+gsap.to(".slider-right .img-4", {
+    ease: "none",
+    xPercent: 10,
+    scale: 0.9,
+    scrollTrigger: {
+        trigger: ".slider-card ",
+        start: "center+=" + 720 + " center",
+        end: "center+=" + 900 + " center",
+        markers: false,
+        scrub: 1
+    }
+});
+gsap.to(".slider-right .img-5", {
+    ease: "none",
+    xPercent: -20,
+    scale: 1,
+    scrollTrigger: {
+        trigger: ".slider-card ",
+        start: "center+=" + 800 + " center",
+        end: "center+=" + 900 + " center",
+        markers: false,
+        scrub: 1
+    }
+});
 
-    //slider card
-    gsap.to(".slider-card", {
-        ease: "linear",
-        scrollTrigger: {
-            trigger: ".slider-card",
-            start: "center center",
-            end: "+=1000",
-            markers: false,
-            pin: true,
-            pinSpacing: true,
-            scrub: 1
-        }
-    });
+//slider card
+gsap.to(".slider-card", {
+    ease: "linear",
+    scrollTrigger: {
+        trigger: ".slider-card",
+        start: "center center",
+        end: "+=1000",
+        markers: false,
+        pin: true,
+        pinSpacing: true,
+        scrub: 1
+    }
+});
 
-    // image source changed
-    gsap.to(".sc2-card-front img", {
-        attr: { src: "./images/01hero.jpg" },
-        scrollTrigger: {
-            trigger: ".banner-three",
-            start: "top bottom",
-            end: "top bottom",
-            endTrigger: ".slider-card ",
-            markers: false,
-            scrub: 1
-        }
-    });
+// image source changed
+gsap.to(".sc2-card-front img", {
+    attr: { src: "./images/01hero.jpg" },
+    scrollTrigger: {
+        trigger: ".banner-three",
+        start: "top bottom",
+        end: "top bottom",
+        endTrigger: ".slider-card ",
+        markers: false,
+        scrub: 1
+    }
+});
 
-    gsap.to(".sc2-card-back img", {
-        attr: { src: "./images/03hero.jpg" },
-        scrollTrigger: {
-            trigger: ".banner-four",
-            start: "top bottom",
-            end: "top bottom",
-            endTrigger: ".slider-card ",
-            markers: false,
-            scrub: 1
-        }
+gsap.to(".sc2-card-back img", {
+    attr: { src: "./images/03hero.jpg" },
+    scrollTrigger: {
+        trigger: ".banner-four",
+        start: "top bottom",
+        end: "top bottom",
+        endTrigger: ".slider-card ",
+        markers: false,
+        scrub: 1
+    }
+});
+
+const pages = gsap.utils.toArray('.page');
+
+const container = gsap.to(pages, {
+    xPercent: -100 * (pages.length - 1),
+    ease: "none",
+    scrollTrigger: {
+        trigger: '#h_scroll',
+        end: '+=10000',
+        scrub: 0,
+        pin: true,
+
+    }
+});
+
+
+
+gsap.utils.toArray(".page").forEach((item) => {
+    let color = item.getAttribute("data-bgcolor");
+
+    ScrollTrigger.create({
+        trigger: item,
+        start: "top center",
+        end: "right",
+        markers: false,
+
+        onEnter: () => gsap.to(".sc_f", {
+            backgroundColor: color,
+            duration: 0.5
+        }),
+        onEnterBack: () => gsap.to(".sc_01", {
+            backgroundColor: color,
+            duration: 0.5
+        }),
     });
 });
+
+// gsap.utils.toArray(".reveal").forEach((item) => {
+//     ScrollTrigger.create({
+//         trigger: ".reveal",
+//         start: "top 80%",
+//         end: "bottom 20%",
+//         markers: true,
+//         onEnter: () => { animate(".reveal") },
+//     });
+
+//     item.style.opacity = "0";
+// });
+
+// const animate = (item) => {
+//     gsap.fromTo(item,
+//         { autoAlpha: 0, x: 500, y: 0 },
+//         { autoAlpha: 1, x: 0, y: 0, duration: 1.25, overwrite: "auto", ease: "expo" }
+//     );
+// }
+
+
+
+
+
+
+
+
+
+
+
+window.matchMedia("(max-width: 900px)").matches || (gsap.set("#h_scroll .sc_f", {
+    backgroundColor: "#000",
+    color: "#000"
+}),
+    gsap.set("#h_scroll .title", {
+        color: "#fff"
+    }),
+    gsap.to("#h_scroll, #h_scroll .title ", {
+        scrollTrigger: {
+            trigger: "#h_scroll",
+            start: "60% top",
+            end: "bottom bottom",
+            scrub: !0,
+            onEnter: function () {
+                gsap.to("#h_scroll", {
+                    backgroundColor: "#E0E3E7",
+                    color: "#000"
+                }),
+                    gsap.to("#h_scroll .title span", {
+                        color: "#000"
+                    }),
+                    gsap.to(["#nav"], {
+                        backgroundColor: "#000"
+                    }),
+                    gsap.to(["#nav span"], {
+                        backgroundColor: "#fff"
+                    }),
+                    gsap.to(["#menu ul li a"], {
+                        color: "#000"
+                    })
+            },
+            onLeaveBack: function () {
+                gsap.to("#h_scroll", {
+                    backgroundColor: "#000",
+                    color: "#fff"
+                }),
+                    gsap.to("#h_scroll .title", {
+                        color: "#fff"
+                    }),
+                    gsap.to(["#nav"], {
+                        backgroundColor: "#fff"
+                    }),
+                    gsap.to(["#nav span"], {
+                        backgroundColor: "#000"
+                    }),
+                    gsap.to(["#menu ul li a"], {
+                        color: "#fff"
+                    })
+            }
+        }
+    })
+
+);
+
