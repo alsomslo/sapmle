@@ -1,5 +1,7 @@
-const lenis = new Lenis()
-
+const lenis = new Lenis({
+    duration: 2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+});
 lenis.on('scroll', (e) => {
     console.log(e)
 })
@@ -11,6 +13,10 @@ function raf(time) {
 
 requestAnimationFrame(raf)
 
+
+
+
+
 const section1 = gsap.timeline();
 section1.to("#section1 .parallax__item__img", { scale: 3 })
     .to("#section1 .parallax__item__img", { autoAlpha: 0.1 })
@@ -19,7 +25,7 @@ ScrollTrigger.create({
     animation: section1,
     trigger: "#section1",
     start: "top top",
-    end: "+=800",
+    end: "+=1500",
     scrub: true,
     pin: true,
     markers: false,
@@ -42,12 +48,12 @@ hasMaskFill.forEach(function (hMaskFill) {
     var spanFillMask = hMaskFill.querySelectorAll("span");
     gsap.to(spanFillMask, {
         scrollTrigger: {
-            trigger: ".has-mask-fill",
+            trigger: ".sec01_text",
             start: "top 90%",
-            end: () => `+=${hMaskFill.offsetHeight * 2}`,
+            end: () => `+=${hMaskFill.offsetHeight * 10} `,
             scrub: 1,
         },
-        duration: 1,
+        duration: 20,
         backgroundSize: "200% 100%",
         stagger: 0.5,
         ease: Linear.easeNone,

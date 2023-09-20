@@ -47,9 +47,11 @@ mainTxt2.to(".main-txt", { opacity: 0, ease: "linear" });
 //loader to scale
 const tl = gsap.timeline();
 tl.to($animeCard, {
+    scrolltrigger:
+        { trigger: ".main-wallpaper" },
     rotationY: 360,
     ease: Expo.easeIn,
-    duration: 1,
+    duration: 2,
     scale: 1,
     width: "100vw",
     height: "100vh"
@@ -102,7 +104,7 @@ if (window.innerWidth >= 1200 && window.innerWidth <= 1499) {
 gsap.to(".main-wallpaper", {
     opacity: 0,
     scrollTrigger: {
-        trigger: ".banner",
+        trigger: ".main-wallpaper",
         start: "center+=" + 100 + " center",
         end: "bottom center",
         markers: false,
@@ -502,7 +504,9 @@ gsap.utils.toArray(".page").forEach((item) => {
             duration: 0.5
         }),
     });
+
 });
+
 
 // gsap.utils.toArray(".reveal").forEach((item) => {
 //     ScrollTrigger.create({
@@ -542,45 +546,26 @@ window.matchMedia("(max-width: 900px)").matches || (gsap.set("#h_scroll .sc_f", 
     }),
     gsap.to("#h_scroll, #h_scroll .title ", {
         scrollTrigger: {
-            trigger: "#h_scroll",
+            trigger: "#h_scroll .sc_02",
             start: "60% top",
             end: "bottom bottom",
             scrub: !0,
             onEnter: function () {
-                gsap.to("#h_scroll", {
-                    backgroundColor: "#E0E3E7",
-                    color: "#000"
-                }),
-                    gsap.to("#h_scroll .title span", {
-                        color: "#000"
-                    }),
-                    gsap.to(["#nav"], {
-                        backgroundColor: "#000"
-                    }),
-                    gsap.to(["#nav span"], {
-                        backgroundColor: "#fff"
-                    }),
-                    gsap.to(["#menu ul li a"], {
-                        color: "#000"
-                    })
-            },
-            onLeaveBack: function () {
-                gsap.to("#h_scroll", {
+                gsap.to("#h_scroll .sc_02 ", {
                     backgroundColor: "#000",
                     color: "#fff"
                 }),
-                    gsap.to("#h_scroll .title", {
-                        color: "#fff"
-                    }),
-                    gsap.to(["#nav"], {
-                        backgroundColor: "#fff"
-                    }),
-                    gsap.to(["#nav span"], {
-                        backgroundColor: "#000"
-                    }),
-                    gsap.to(["#menu ul li a"], {
+                    gsap.to("#h_scroll .sc_02 h3", {
                         color: "#fff"
                     })
+
+            },
+            onLeaveBack: function () {
+                gsap.to("#h_scroll ", {
+                    backgroundColor: "#000",
+                    color: "#fff"
+                })
+
             }
         }
     })
