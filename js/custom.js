@@ -1,5 +1,5 @@
 const lenis = new Lenis({
-    duration: 2,
+    duration: 4,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
 });
 lenis.on('scroll', (e) => {
@@ -50,16 +50,32 @@ hasMaskFill.forEach(function (hMaskFill) {
         scrollTrigger: {
             trigger: ".sec01_text",
             start: "top 90%",
-            end: () => `+=${hMaskFill.offsetHeight * 10} `,
+            end: () => `+=${hMaskFill.offsetHeight * 3} `,
             scrub: 1,
+
         },
-        duration: 20,
+        duration: 150,
         backgroundSize: "200% 100%",
         stagger: 0.5,
         ease: Linear.easeNone,
     });
+
 });
 
+const an15 = gsap.timeline();
+gsap.to("sec01_text ", {
+    ease: "linear",
+    scrollTrigger: {
+        ease: "linear",
+        trigger: "sec01_text",
+        start: "bottom center",
+        end: "+=1000",
+        markers: false,
+        pin: true,
+
+        scrub: 3,
+    }
+})
 
 
 
@@ -67,20 +83,21 @@ hasMaskFill.forEach(function (hMaskFill) {
 
 
 
-const ani5 = gsap.timeline();
-ani5.from("#pin_01 .t1", { x: innerWidth * 1 })
-    .from("#pin_01 .t2", { x: innerWidth * -1 })
 
-ScrollTrigger.create({
-    animation: ani5,
-    trigger: "#pin_01",
-    start: "top top",
-    end: "+=200",
-    scrub: true,
-    pin: true,
-    markers: false,
-    anticipatePin: 1
-});
+// const ani5 = gsap.timeline();
+// ani5.from("#pin_01 .t1", { x: innerWidth * 1 })
+//     .from("#pin_01 .t2", { x: innerWidth * -1 })
+
+// ScrollTrigger.create({
+//     animation: ani5,
+//     trigger: "#pin_01",
+//     start: "top top",
+//     end: "+=200",
+//     scrub: true,
+//     pin: true,
+//     markers: false,
+//     anticipatePin: 1
+// });
 
 
 

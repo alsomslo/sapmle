@@ -7,14 +7,17 @@ body {
 }
 
 .sc_01 {
-  background: url(../images/alsom.PNG) no-repeat center center/cover;
+  background-image: url(../images/alsom.PNG);
+  background-repeat: no-repeat;
+  background-position: center right;
+  background-size: 900px 100vh;
 }
 
 .sc_01::before {
   content: "";
   position: absolute;
   display: block;
-  background: linear-gradient(45deg, #000 20%, transparent 80%);
+  background: linear-gradient(90deg, #000 70%, transparent 80%);
   width: 100%;
   height: 100%;
   z-index: 1;
@@ -40,6 +43,7 @@ body {
 }
 
 .sc_02 {
+  background: #000;
   color: #fff;
 }
 
@@ -47,21 +51,22 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
   width: 100vw;
   max-width: 100%;
   height: 600px;
+  line-height: 1.2;
 }
 
 .container h1 {
   color: #fff;
   font-size: 6vw;
   max-width: 100%;
+  font-weight: 900;
 }
 
-.container h1 > em {
-  font-weight: 500;
-  font-size: 3vw;
+.container h1 > span {
+  font-weight: 200;
+  font-size: 7vw;
 }
 
 .container h1 div {
@@ -162,15 +167,20 @@ body {
 
 .sec01_text {
   position: absolute;
-  bottom: 15%;
+  height: 100vh;
+  top: 50%;
   left: 50%;
   max-width: 90vw;
   width: 100%;
-  transform: translate(-50%, 150px);
+  transform: translate(-50%, 50%);
   color: #fff;
-  font-size: 40px;
+  font-size: 80px;
   font-weight: 300;
   text-transform: uppercase;
+}
+
+.sec01_text .has-mask-fill {
+  position: absolute;
 }
 
 .has-mask-fill > span {
@@ -232,7 +242,7 @@ body {
 
 /*main-text*/
 .main-txt {
-  position: fixed;
+  position: absolute;
   text-transform: uppercase;
   text-align: center;
   top: 50%;
@@ -243,7 +253,13 @@ body {
   max-width: 2560px;
   margin: 0px auto;
   color: #fff;
-  z-index: 1;
+  z-index: 555;
+  font-size: 220px;
+  font-weight: 700;
+}
+
+.main-txt {
+  width: 95%;
 }
 
 .banner .col-xl-7,
@@ -503,11 +519,7 @@ body {
   }
 }
 .banner-content {
-  position: absolute;
-  padding: 0 50px;
-  top: 50%;
-  left: 0%;
-  transform: translate(0, -50%);
+  padding: 0 0 0 200px;
   width: 800px;
 }
 

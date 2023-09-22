@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 var $animeCard = document.querySelector(".sc2-card-inner");
 //loader img
 gsap.set($animeCard, {
-    rotationY: 90,
+    rotationY: 0,
     top: "50%",
     left: "50%",
     xPercent: -50,
@@ -29,8 +29,9 @@ gsap.set(".sc2-card", { x: "50%", y: "50%" });
 
 // Main-text animation
 //Main text load
-
+gsap.set(".main-txt", { opacity: 0, yPercent: 50 });
 const mainTxt = gsap.timeline();
+mainTxt.to(".main-txt", { opacity: 1, yPercent: -50, duration: 2 });
 
 //Main text opacity down
 const mainTxt2 = gsap.timeline({
@@ -47,11 +48,9 @@ mainTxt2.to(".main-txt", { opacity: 0, ease: "linear" });
 //loader to scale
 const tl = gsap.timeline();
 tl.to($animeCard, {
-    scrolltrigger:
-        { trigger: ".main-wallpaper" },
-    rotationY: 360,
+    rotationY: 0,
     ease: Expo.easeIn,
-    duration: 2,
+    duration: 2.5,
     scale: 1,
     width: "100vw",
     height: "100vh"
@@ -120,8 +119,8 @@ gsap.to(".banner-content", {
     opacity: 1,
     scrollTrigger: {
         trigger: ".banner",
-        start: "center+=" + 500 + " center",
-        end: "+=0",
+        start: "center+=" + 300 + " center",
+        end: "+=300",
         markers: false,
         scrub: 1
     }
@@ -133,7 +132,7 @@ gsap.to(".banner", {
     scrollTrigger: {
         trigger: ".banner",
         start: "center center",
-        end: "+=600",
+        end: "+=1500",
         markers: false,
         pin: true,
         pinSpacing: true,
@@ -147,7 +146,7 @@ gsap.to(".banner-two", {
     scrollTrigger: {
         trigger: ".banner-two",
         start: "center center",
-        end: "+=600",
+        end: "+=1500",
         markers: false,
         pin: true,
         pinSpacing: true,
@@ -160,7 +159,7 @@ const t3 = gsap.timeline({
     scrollTrigger: {
         trigger: ".banner-two",
         start: "top center",
-        end: "+=600",
+        end: "+=1500",
         markers: false,
         scrub: 1
     }
@@ -189,7 +188,7 @@ gsap.to(".banner-three", {
     scrollTrigger: {
         trigger: ".banner-three",
         start: "center center",
-        end: "+=600",
+        end: "+=1500",
         markers: false,
         pin: true,
         pinSpacing: true,
@@ -202,7 +201,7 @@ const t4 = gsap.timeline({
     scrollTrigger: {
         trigger: ".banner-three",
         start: "top center",
-        end: "+=600",
+        end: "+=1500",
         markers: false,
         scrub: 1
     }
@@ -252,7 +251,7 @@ gsap.to(".banner-four", {
     scrollTrigger: {
         trigger: ".banner-four",
         start: "center center",
-        end: "+=600",
+        end: "+=1500",
         markers: false,
         pin: true,
         pinSpacing: true,
@@ -265,7 +264,7 @@ const t5 = gsap.timeline({
     scrollTrigger: {
         trigger: ".banner-four",
         start: "top center",
-        end: "+=600",
+        end: "+=1500",
         markers: false,
         scrub: 1
     }
@@ -477,98 +476,206 @@ const container = gsap.to(pages, {
     ease: "none",
     scrollTrigger: {
         trigger: '#h_scroll',
-        end: '+=10000',
+        end: '+=20000',
         scrub: 0,
         pin: true,
+
 
     }
 });
 
 
 
-gsap.utils.toArray(".page").forEach((item) => {
-    let color = item.getAttribute("data-bgcolor");
 
-    ScrollTrigger.create({
-        trigger: item,
-        start: "top center",
-        end: "right",
+
+
+
+
+// create any animation you want!
+const horizontal = document.querySelector(".page");
+gsap.from(".reveal_01", {
+    duration: 0.7,
+    opacity: 0,
+    xPercent: 100,
+    ease: 'linear',
+    scrollTrigger: {
+        trigger: ".reveal_01",
+        start: "+=1500",
+
         markers: false,
+    }
 
-        onEnter: () => gsap.to(".sc_f", {
-            backgroundColor: color,
-            duration: 0.5
-        }),
-        onEnterBack: () => gsap.to(".sc_01", {
-            backgroundColor: color,
-            duration: 0.5
-        }),
-    });
+});
+gsap.from(".pb_01", {
+    duration: 1,
+    opacity: 0,
+    yPercent: 100,
+    ease: 'linear',
+    scrollTrigger: {
+        trigger: ".pb_01",
+        start: "+=1200",
+        markers: false,
+    }
+});
 
+gsap.from(".pt_01", {
+    duration: 1,
+    opacity: 0,
+    yPercent: 100,
+    ease: 'linear',
+    scrollTrigger: {
+        trigger: ".pt_01",
+        start: "+=1600",
+        markers: false,
+    }
 });
 
 
-// gsap.utils.toArray(".reveal").forEach((item) => {
-//     ScrollTrigger.create({
-//         trigger: ".reveal",
-//         start: "top 80%",
-//         end: "bottom 20%",
-//         markers: true,
-//         onEnter: () => { animate(".reveal") },
-//     });
 
-//     item.style.opacity = "0";
-// });
+gsap.from(".reveal_02", {
+    duration: 0.7,
+    opacity: 0,
+    xPercent: 100,
+    ease: 'linear',
+    scrollTrigger: {
+        trigger: ".reveal_02",
+        start: "+=4000",
+        markers: true,
+    }
+});
+gsap.from(".pb_02", {
+    duration: 1,
+    opacity: 0,
+    yPercent: 100,
+    ease: 'linear',
+    scrollTrigger: {
+        trigger: ".pb_02",
+        start: "+=3800",
+        markers: true,
+    }
+});
 
-// const animate = (item) => {
-//     gsap.fromTo(item,
-//         { autoAlpha: 0, x: 500, y: 0 },
-//         { autoAlpha: 1, x: 0, y: 0, duration: 1.25, overwrite: "auto", ease: "expo" }
-//     );
-// }
+gsap.from(".pt_02", {
+    duration: 1,
+    opacity: 0,
+    yPercent: 100,
+    ease: 'linear',
+    scrollTrigger: {
+        trigger: ".pt_02",
+        start: "+=4400",
+        markers: true,
+    }
+});
+
+
+gsap.from(".reveal_03", {
+    duration: 0.7,
+    opacity: 0,
+    xPercent: 100,
+    ease: 'linear',
+    scrollTrigger: {
+        trigger: ".reveal_03",
+        start: "+=7200",
+        markers: true,
+    }
+});
+gsap.from(".pb_03", {
+    duration: 1,
+    opacity: 0,
+    yPercent: 100,
+    ease: 'linear',
+    scrollTrigger: {
+        trigger: ".pb_03",
+        start: "+=6900 ",
+        markers: true,
+    }
+});
+
+gsap.from(".pt_03", {
+    duration: 1,
+    opacity: 0,
+    yPercent: 100,
+    ease: 'linear',
+    scrollTrigger: {
+        trigger: ".pt_03",
+        start: "+=7800",
+        markers: true,
+    }
+});
+
+gsap.from(".reveal_04", {
+    duration: 0.7,
+    opacity: 0,
+    xPercent: 100,
+    ease: 'linear',
+    scrollTrigger: {
+        trigger: ".reveal_04",
+        start: "+=10500",
+        markers: true,
+    }
+});
+gsap.from(".pb_04", {
+    duration: 1,
+    opacity: 0,
+    yPercent: 100,
+    ease: 'linear',
+    scrollTrigger: {
+        trigger: ".pb_04",
+        start: "+=10000 ",
+        markers: true,
+    }
+});
+
+gsap.from(".pt_04", {
+    duration: 1,
+    opacity: 0,
+    yPercent: 100,
+    ease: 'linear',
+    scrollTrigger: {
+        trigger: ".pt_04",
+        start: "+=10900 ",
+        markers: true,
+    }
+});
+
+
+
+gsap.from(".reveal_05", {
+    duration: 0.7,
+    opacity: 0,
+    xPercent: 100,
+    ease: 'linear',
+    scrollTrigger: {
+        trigger: ".reveal_05",
+        start: "+=14000",
+        markers: true,
+    }
+});
+gsap.from(".pb_05", {
+    duration: 1,
+    opacity: 0,
+    yPercent: 100,
+    ease: 'linear',
+    scrollTrigger: {
+        trigger: ".pb_05",
+        start: "+=13800 ",
+        markers: true,
+    }
+});
+
+gsap.from(".pt_05", {
+    duration: 1,
+    opacity: 0,
+    yPercent: 100,
+    ease: 'linear',
+    scrollTrigger: {
+        trigger: ".pt_05",
+        start: "+=14700 ",
+        markers: true,
+    }
+});
 
 
 
 
-
-
-
-
-
-
-
-window.matchMedia("(max-width: 900px)").matches || (gsap.set("#h_scroll .sc_f", {
-    backgroundColor: "#000",
-    color: "#000"
-}),
-    gsap.set("#h_scroll .title", {
-        color: "#fff"
-    }),
-    gsap.to("#h_scroll, #h_scroll .title ", {
-        scrollTrigger: {
-            trigger: "#h_scroll .sc_02",
-            start: "60% top",
-            end: "bottom bottom",
-            scrub: !0,
-            onEnter: function () {
-                gsap.to("#h_scroll .sc_02 ", {
-                    backgroundColor: "#000",
-                    color: "#fff"
-                }),
-                    gsap.to("#h_scroll .sc_02 h3", {
-                        color: "#fff"
-                    })
-
-            },
-            onLeaveBack: function () {
-                gsap.to("#h_scroll ", {
-                    backgroundColor: "#000",
-                    color: "#fff"
-                })
-
-            }
-        }
-    })
-
-);
 
