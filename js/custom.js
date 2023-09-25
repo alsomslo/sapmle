@@ -14,12 +14,50 @@ function raf(time) {
 requestAnimationFrame(raf)
 
 
+gsap.fromTo(
+    "#text-anim",
+    {
+        y: 500,
+    },
+    {
+        y: 0,
+        duration: 1.5,
+        ease: Power3.easeInOut,
+        delay: 0.1,
+    }
 
+);
 
+gsap.fromTo(
+    ".ta_01",
+    {
+        y: 500,
+    },
+    {
+        y: 0,
+        duration: 1.5,
+        ease: Power3.easeInOut,
+        delay: 0.3,
+    }
+
+);
+// gsap.fromTo(
+//     "#text-anim .ta_02",
+//     {
+//         y: 500,
+//     },
+//     {
+//         y: 0,
+//         duration: 2.5,
+//         ease: Power3.easeInOut,
+//         delay: 0.5,
+//     }
+
+// );
 
 const section1 = gsap.timeline();
 section1.to("#section1 .parallax__item__img", { scale: 3 })
-    .to("#section1 .parallax__item__img", { autoAlpha: 0.1 })
+    .to("#section1 .parallax__item__img", { autoAlpha: 0.3 })
 
 ScrollTrigger.create({
     animation: section1,

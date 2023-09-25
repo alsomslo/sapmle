@@ -13,15 +13,19 @@ gsap.set($animeCard, {
     yPercent: -50,
     width: "40vh",
     height: "40vh",
-    scale: 1
+    scale: 1,
+
+
 });
+
 
 //img set
 gsap.set(".sc2-card-front img", {
-    attr: { src: "./images/01hero.jpg" }
+    attr: { src: "./images/section02_02.png" }
+
 });
 gsap.set(".sc2-card-back img", {
-    attr: { src: "./images/03hero.jpg" }
+    attr: { src: "./images/01hero.jpg" }
 });
 
 //Main card-wrapper
@@ -29,28 +33,31 @@ gsap.set(".sc2-card", { x: "50%", y: "50%" });
 
 // Main-text animation
 //Main text load
-gsap.set(".main-txt", { opacity: 0, yPercent: 50 });
+gsap.set(".main-txt", { opacity: 0, yPercent: 50, duration: 4 });
 const mainTxt = gsap.timeline();
-mainTxt.to(".main-txt", { opacity: 1, yPercent: -50, duration: 2 });
+mainTxt.to(".main-txt", { opacity: 1, yPercent: -50, duration: 2, });
 
 //Main text opacity down
 const mainTxt2 = gsap.timeline({
     scrollTrigger: {
-        trigger: ".main-txt",
+        trigger: ".sc2-card",
         start: "center center",
         end: "+=50",
         markers: false,
-        scrub: 1
+        scrub: 1,
+
+
     }
 });
-mainTxt2.to(".main-txt", { opacity: 0, ease: "linear" });
+
+mainTxt2.to(".main-txt", { opacity: 0, ease: "linear", });
 
 //loader to scale
 const tl = gsap.timeline();
 tl.to($animeCard, {
     rotationY: 0,
     ease: Expo.easeIn,
-    duration: 2.5,
+    duration: 0.5,
     scale: 1,
     width: "100vw",
     height: "100vh"
@@ -60,7 +67,7 @@ tl.to($animeCard, {
 const t2 = gsap.timeline({
     scrollTrigger: {
         trigger: ".banner",
-        start: "center center",
+        start: "top top",
         end: "+=600",
         markers: false,
         scrub: 1
@@ -105,9 +112,10 @@ gsap.to(".main-wallpaper", {
     scrollTrigger: {
         trigger: ".main-wallpaper",
         start: "center+=" + 100 + " center",
-        end: "bottom center",
+        end: "+=600",
         markers: false,
-        scrub: 1
+        scrub: 1,
+
     }
 });
 
@@ -150,6 +158,8 @@ gsap.to(".banner-two", {
         markers: false,
         pin: true,
         pinSpacing: true,
+
+
         scrub: 1
     }
 });
@@ -446,7 +456,7 @@ gsap.to(".slider-card", {
 
 // image source changed
 gsap.to(".sc2-card-front img", {
-    attr: { src: "./images/01hero.jpg" },
+    attr: { src: "./images/js.svg" },
     scrollTrigger: {
         trigger: ".banner-three",
         start: "top bottom",
@@ -458,7 +468,7 @@ gsap.to(".sc2-card-front img", {
 });
 
 gsap.to(".sc2-card-back img", {
-    attr: { src: "./images/03hero.jpg" },
+    attr: { src: "./images/01hero.jpg" },
     scrollTrigger: {
         trigger: ".banner-four",
         start: "top bottom",
@@ -540,7 +550,7 @@ gsap.from(".reveal_02", {
     scrollTrigger: {
         trigger: ".reveal_02",
         start: "+=4000",
-        markers: true,
+        markers: false,
     }
 });
 gsap.from(".pb_02", {
@@ -551,7 +561,7 @@ gsap.from(".pb_02", {
     scrollTrigger: {
         trigger: ".pb_02",
         start: "+=3800",
-        markers: true,
+        markers: false,
     }
 });
 
@@ -563,7 +573,7 @@ gsap.from(".pt_02", {
     scrollTrigger: {
         trigger: ".pt_02",
         start: "+=4400",
-        markers: true,
+        markers: false,
     }
 });
 
@@ -576,7 +586,7 @@ gsap.from(".reveal_03", {
     scrollTrigger: {
         trigger: ".reveal_03",
         start: "+=7200",
-        markers: true,
+        markers: false,
     }
 });
 gsap.from(".pb_03", {
@@ -587,7 +597,7 @@ gsap.from(".pb_03", {
     scrollTrigger: {
         trigger: ".pb_03",
         start: "+=6900 ",
-        markers: true,
+        markers: false,
     }
 });
 
@@ -599,7 +609,7 @@ gsap.from(".pt_03", {
     scrollTrigger: {
         trigger: ".pt_03",
         start: "+=7800",
-        markers: true,
+        markers: false,
     }
 });
 
@@ -610,8 +620,8 @@ gsap.from(".reveal_04", {
     ease: 'linear',
     scrollTrigger: {
         trigger: ".reveal_04",
-        start: "+=10500",
-        markers: true,
+        start: "+=10000",
+        markers: false,
     }
 });
 gsap.from(".pb_04", {
@@ -621,8 +631,8 @@ gsap.from(".pb_04", {
     ease: 'linear',
     scrollTrigger: {
         trigger: ".pb_04",
-        start: "+=10000 ",
-        markers: true,
+        start: "+=9500 ",
+        markers: false,
     }
 });
 
@@ -633,8 +643,8 @@ gsap.from(".pt_04", {
     ease: 'linear',
     scrollTrigger: {
         trigger: ".pt_04",
-        start: "+=10900 ",
-        markers: true,
+        start: "+=10400 ",
+        markers: false,
     }
 });
 
@@ -647,8 +657,8 @@ gsap.from(".reveal_05", {
     ease: 'linear',
     scrollTrigger: {
         trigger: ".reveal_05",
-        start: "+=14000",
-        markers: true,
+        start: "+=13500",
+        markers: false,
     }
 });
 gsap.from(".pb_05", {
@@ -658,8 +668,8 @@ gsap.from(".pb_05", {
     ease: 'linear',
     scrollTrigger: {
         trigger: ".pb_05",
-        start: "+=13800 ",
-        markers: true,
+        start: "+=13300 ",
+        markers: false,
     }
 });
 
@@ -670,8 +680,8 @@ gsap.from(".pt_05", {
     ease: 'linear',
     scrollTrigger: {
         trigger: ".pt_05",
-        start: "+=14700 ",
-        markers: true,
+        start: "+=14200 ",
+        markers: false,
     }
 });
 
