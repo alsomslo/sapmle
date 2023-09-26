@@ -1,6 +1,5 @@
 
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 var $animeCard = document.querySelector(".sc2-card-inner");

@@ -1,5 +1,5 @@
 const lenis = new Lenis({
-    duration: 4,
+    duration: 5,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
 });
 lenis.on('scroll', (e) => {
@@ -90,7 +90,6 @@ hasMaskFill.forEach(function (hMaskFill) {
             start: "top 90%",
             end: () => `+=${hMaskFill.offsetHeight * 3} `,
             scrub: 1,
-
         },
         duration: 150,
         backgroundSize: "200% 100%",
@@ -99,6 +98,7 @@ hasMaskFill.forEach(function (hMaskFill) {
     });
 
 });
+
 
 const an15 = gsap.timeline();
 gsap.to("sec01_text ", {
